@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href=showData.css>
+    <meta charset="UTF-8">
+    <title>HR</title>
+</head>
+<body>
+<h2>Employee List </h2>
+<div th:if="${personList.size} == 0">
+    No data found
+</div>
+<table th:if="${personList.size() >=1}">
+    <thead>
+    <tr>
+        <th>Employee ID<th>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Department</th>
+    </tr>
+    </thead>
+    <tbody th:each="User:${personList}" th:object="${user}">
+    <td th:value="*{id}"></td>
+    <td th:text="*{name}"></td>
+    <td th:text="*{number}"></td>
+    <td th:text="*{department}"></td>
+    </tbody>
+</table>
+</body>
+</html>
