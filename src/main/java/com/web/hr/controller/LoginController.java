@@ -1,5 +1,6 @@
 package com.web.hr.controller;
 
+import com.web.hr.Constatnt.ErrorMessageConst;
 import com.web.hr.form.LoginForm;
 import com.web.hr.service.LoginService;
 import com.web.hr.util.AppUtil;
@@ -56,7 +57,7 @@ public class LoginController {
      if(isCorrectUserAuth){
          return "redirect:/menu";
      }else{
-            var errorMsg = AppUtil.getMessage(messageSource,"login.wrongInput");
+            var errorMsg = AppUtil.getMessage(messageSource, ErrorMessageConst.LOGIN_WRONG_INPUT);
             model.addAttribute("errorMsg",errorMsg);
         }
         return "login";
