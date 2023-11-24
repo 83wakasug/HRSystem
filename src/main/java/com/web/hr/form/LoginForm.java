@@ -9,7 +9,7 @@ import lombok.Data;
 public class LoginForm {
 
     /**  login id*/
-    String userName;
+    String loginId;
     /**  password */
     String password;
 

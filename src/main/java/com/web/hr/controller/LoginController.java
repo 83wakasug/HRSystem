@@ -11,15 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Login Controller
- *
- *
- *
- *
  */
-
 
 @Controller
 @RequiredArgsConstructor
@@ -39,7 +35,7 @@ public class LoginController {
      * @return display
      */
     @GetMapping("/login")
-    public String view(Model model, LoginForm form){
+    public String menu(Model model, LoginForm form){
 
         return "login";
     }
@@ -52,7 +48,7 @@ public class LoginController {
      */
     @PostMapping("/login")
     public String login(Model model,LoginForm form){
-        var userInfo = loginService.searchUserByID(form.getUserName());
+        var userInfo = loginService.searchUserByID(form.getLoginId());
         var isCorrectUserAuth=userInfo.isPresent()&& passwordEncoder.matches(form.getPassword(),userInfo.get().getPassword());
      if(isCorrectUserAuth){
          return "redirect:/menu";

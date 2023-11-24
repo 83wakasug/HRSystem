@@ -10,14 +10,17 @@
   <form th:action = "@{/signup}" method="post" th:object="${signupForm}">
     <div>
       <label> Login ID</label>
-      <input type="text" th:field ="*{userName}">
+      <input type="text" th:field ="*{loginId}">
     </div>
     <div>
       <label>Password</label>
-      <input type="password" th:fierld = "*{password}">
+      <label>
+        <input type="password" th:field = "*{password}">
+      </label>
     </div>
     <div>
       <input type = "submit" value="sign up">
     </div>
+  </form>
 </body>
 </html>

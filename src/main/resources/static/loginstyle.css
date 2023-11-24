@@ -75,13 +75,7 @@ p {
     background-color: #cbcbd5;
     position: relative;
 }
-#signup{
-    color: black;
-    background-color: white;
-    text-align: center;
-    border-color: white;
-    width:100px;
-}
+
 #headerSignup{
     text-align: center;
     color: white;
@@ -101,4 +95,27 @@ p {
     text-decoration: lightblue;
 }
 
+#signupbutton{
+
+    text-align: center;
+    bottom: 20px;
+    position: absolute;
+    align-items: center;
+    left:170px;
+    background-color:white ;
+    border-color: white;
+    color: #0f1512;
+    width:100px;
+}
+
+
+#signup{
+    color: black;
+    background-color: white;
+    align-items: center;
+    text-align: center;
+    border-color: white;
+    justify-content: center;
+    height: 100%;
+}
 
