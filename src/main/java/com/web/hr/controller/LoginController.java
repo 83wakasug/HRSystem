@@ -1,6 +1,6 @@
 package com.web.hr.controller;
 
-import com.web.hr.Constatnt.ErrorMessageConst;
+import com.web.hr.Constatnt.MessageConst;
 import com.web.hr.form.LoginForm;
 import com.web.hr.service.LoginService;
 import com.web.hr.util.AppUtil;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Login Controller
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class LoginController {
 
+   test
     /**Login screen service*/
      private final LoginService loginService;
 
@@ -35,7 +35,7 @@ public class LoginController {
      * @return display
      */
     @GetMapping("/login")
-    public String menu(Model model, LoginForm form){
+    public String view(Model model, LoginForm form){
 
         return "login";
     }
@@ -53,7 +53,7 @@ public class LoginController {
      if(isCorrectUserAuth){
          return "redirect:/menu";
      }else{
-            var errorMsg = AppUtil.getMessage(messageSource, ErrorMessageConst.LOGIN_WRONG_INPUT);
+            var errorMsg = AppUtil.getMessage(messageSource, MessageConst.LOGIN_WRONG_INPUT);
             model.addAttribute("errorMsg",errorMsg);
         }
         return "login";
