@@ -17,6 +17,11 @@ public class SignupService {
     private final Mapper mapper;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     *
+     * @param form input info
+     * @return UserEntity , if userID already exist return Empty
+     */
     public Optional<UserInfo> resistUserInfo(SignupForm form){
         var userInfoExistedOpt =repository.findById(form.getLoginId());
         if(userInfoExistedOpt.isPresent()){

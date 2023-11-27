@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}">
+  <script type="text/javascript" th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
     <meta charset="UTF-8">
     <title>signUp</title>
 </head>
 <body>
-  <h2>Sign up now!</h2>
-  <span th:text ="${errorMsg}"></span>
-  <form th:action = "@{/signup}" method="post" th:object="${signupForm}">
-    <div>
-      <label> Login ID</label>
-      <input type="text" th:field ="*{loginId}">
-    </div>
-    <div>
-      <label>Password</label>
-      <label>
-        <input type="password" th:field = "*{password}">
-      </label>
-    </div>
-    <div>
-      <input type = "submit" value="sign up">
-    </div>
-  </form>
+<div class="container-fluid">
+    <h2>Sign up now!</h2>
+    <span th:text ="${message}"></span>
+    <form th:action = "@{/signup}" method="post" th:object="${signupForm}">
+        <div class="form-group">
+          <div class="col-3">
+          <p><label for="loginId"> Login ID</label>
+          <input class="form-control" type="text" th:field ="*{loginId}">
+          </div>
+          <div class="col-3">
+            <p><label for ="password">Password</label>
+            <input class="form-control" type="password" th:field = "*{password}">
+          </div>
+        </div>
+
+      <div>
+        <input class="btn btn-primary" type = "submit" value="sign up">
+      </div>
+    </form>
+  <a th:href="@{/login}">Go back to Login</a>
+</div>
 </body>
 </html>
