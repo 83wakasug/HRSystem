@@ -2,6 +2,7 @@ package com.web.hr.controller;
 
 
 import com.web.hr.Constatnt.MessageConst;
+import com.web.hr.Constatnt.SignupMessage;
 import com.web.hr.entity.UserInfo;
 import com.web.hr.form.SignupForm;
 import com.web.hr.service.SignupService;
@@ -30,17 +31,19 @@ public class SignupController {
     @PostMapping("/signup")
     public void Signup(Model model, SignupForm form){
         var userInfoOpt= service.resistUserInfo(form);
+        var signupMessage = judgeMessageKey(userInfoOpt);
+        var messageID = AppUtil.getMessage(messageSource,signupMessage.getMessageID());
+        model.addAttribute("message",messageID);
+        model.addAttribute("isError",signupMessage.isError());
 
-            var message = AppUtil.getMessage(messageSource, judgeMessageKey(userInfoOpt));
-            model.addAttribute("message",message);
 
     }
 
-     private String judgeMessageKey(Optional<UserInfo> userInfoOpt){
+     private SignupMessage judgeMessageKey(Optional<UserInfo> userInfoOpt){
         if(userInfoOpt.isEmpty()){
-            return MessageConst.SIGNUP_EXISTED_LOGIN;
+            return SignupMessage.EXISTED_LOGIN_ID;
         }else{
-            return MessageConst.SIGNUP_RESIST_SUCCEED;
+            return SignupMessage.SUCCEED;
         }
      }
 
