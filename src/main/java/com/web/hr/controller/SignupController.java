@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -29,14 +31,21 @@ public class SignupController {
 
 
     @PostMapping("/signup")
-    public void Signup(Model model, SignupForm form){
+    public void Signup(Model model, @Validated SignupForm form, BindingResult bdResult){
+        if(bdResult.hasErrors()){
+            editGuideMessage(model,MessageConst.FORM_ERROR,true);
+            return;
+        }
         var userInfoOpt= service.resistUserInfo(form);
         var signupMessage = judgeMessageKey(userInfoOpt);
-        var messageID = AppUtil.getMessage(messageSource,signupMessage.getMessageID());
-        model.addAttribute("message",messageID);
-        model.addAttribute("isError",signupMessage.isError());
+        editGuideMessage(model,signupMessage.getMessageID(), signupMessage.isError());
 
+    }
 
+    private void editGuideMessage(Model model,String messageID,boolean isError){
+        var message = AppUtil.getMessage(messageSource,messageID);
+        model.addAttribute("message",message);
+        model.addAttribute("isError",isError);
     }
 
      private SignupMessage judgeMessageKey(Optional<UserInfo> userInfoOpt){
